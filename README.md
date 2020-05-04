@@ -8,10 +8,13 @@
 
 ## Collection of diverse utilit functions
 
-1. Array internals
+1. Array internals (inspections)
 
-2. random sets
+2. random sets (randomset)
 
-3. traits for neutral elements
+3. traits for neutral elements (isneutral)
 
-...
+4. generation of default object for given type (objectof)
+
+5. method lists and method formating (methodslist)
+

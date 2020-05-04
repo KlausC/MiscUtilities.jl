@@ -1,12 +1,10 @@
 module MiscUtilities
 
-#include("baseexports.jl")
 #include("baseimports.jl")
 
-#include("array.jl")
-#include("reducedim.jl")
-#include("sparse/sparse.jl")
 include("inspections.jl")
 include("randsubset.jl")
+include("methodlists.jl")
+include("objectof.jl")
 
 end # module
