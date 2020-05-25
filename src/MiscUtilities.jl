@@ -8,5 +8,6 @@ include("methodlists.jl")
 include("objectof.jl")
 include("summation.jl")
 include("ast.jl")
+include("sparsegen.jl")
 
 end # module
