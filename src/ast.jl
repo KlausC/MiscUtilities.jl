@@ -1,7 +1,7 @@
 
 # print AST in Lisp form
 
-export pexpression, pexpressions
+export pexpression, pexpressions, rmlines
 """
     pexpression(quoted expression)
 
@@ -38,4 +38,14 @@ pexpression(s) = pexpression(stdout, s)
 
 pexpressions(s) = sprint(pexpression, s)
 
+"""
+    rmlines(expression)
+
+Return new Expr with all LineiNumberNode's removed
+"""
+function rmlines(ex::Expr)
+    args = filter(x -> !(x isa LineNumberNode), rmlines.(ex.args))
+    Expr(ex.head, args...)
+end
+rmlines(x) = x
 
