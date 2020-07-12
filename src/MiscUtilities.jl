@@ -9,5 +9,6 @@ include("objectof.jl")
 include("summation.jl")
 include("ast.jl")
 include("sparsegen.jl")
+include("threads.jl")
 
 end # module

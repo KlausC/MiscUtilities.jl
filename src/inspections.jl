@@ -1,4 +1,7 @@
 
+export reflect_data
+export julia_binfile, julia_sysimage
+
 """
     unsafe_peek(a::Array, T::Type, n::Integer)
 
@@ -56,6 +59,27 @@ function reflect_data(obj::Array)
     end
 end
 
+# string
+function reflect_data(s::String)
+    sl = Int(unsafe_wrap(Vector{Int}, reinterpret(Ptr{Int}, pointer_from_objref(s)), 1)[1])
+    pdata = reinterpret(Ptr{UInt8}, pointer_from_objref(s))
+    (data=pdata, length=sl, content=unsafe_wrap(Vector{UInt8}, pdata + sizeof(Int), sl))
+end
+
+# convert Symbol to String
+function sstring(a::Symbol)
+   pname = Base.unsafe_convert(Ptr{UInt8}, a)
+   slen = Int(ccall(:strlen, Csize_t, (Cstring,), pname))
+   v = unsafe_wrap(Vector{UInt8}, pname, slen)
+   String(v)
+end
+
+# Convert Symbol to String (further optimized)
+function ssstring(a::Symbol)
+   pname = Base.unsafe_convert(Ptr{UInt8}, a)
+   unsafe_string(pname)
+end
+
 """
     julia_binfile(), julia_sysimage()
 
@@ -67,5 +91,4 @@ end
 function julia_sysimage()
     unsafe_string(Base.JLOptions().image_file)
 end
-
 
