@@ -10,5 +10,6 @@ include("summation.jl")
 include("ast.jl")
 include("sparsegen.jl")
 include("threads.jl")
+include("exfiltrate.jl")
 
 end # module
