@@ -12,5 +12,6 @@ include("sparsegen.jl")
 include("threads.jl")
 include("exfiltrate.jl")
 include("copyelementtypes.jl")
+include("ilog2.jl")
 
 end # module
