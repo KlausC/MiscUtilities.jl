@@ -92,3 +92,9 @@ function julia_sysimage()
     unsafe_string(Base.JLOptions().image_file)
 end
 
+function tweak_commandline()
+    o = Base.JLOptions()
+    o′ = Base.JLOptions((x === :depwarn ? Int8(1) :
+    getfield(o, x) for x in fieldnames(Base.JLOptions))...)
+    unsafe_store!(cglobal(:jl_options, Base.JLOptions), o′)
+end
